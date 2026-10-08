@@ -1,6 +1,21 @@
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/dzonerzy/zsuite/main/docs/assets/logo.svg" alt="zsuite Logo" width="150">
+
 # zsuite
 
-A toolkit for building programming languages, DSLs and data formats in Python, from syntax to running code to editor support. Each stage is its own package, usable alone; together they take a language from a grammar to a fast implementation with an editor.
+**A toolkit for building programming languages in Python: syntax, checks, execution and editor support.**
+
+Programming languages, DSLs and data formats, from a grammar to a fast implementation with an editor. Each stage is its own package, usable alone; together they cover the whole way.
+
+[![GitHub Stars](https://img.shields.io/github/stars/dzonerzy/zsuite?style=flat)](https://github.com/dzonerzy/zsuite)
+[![Python](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org/)
+[![Zig](https://img.shields.io/badge/zig-0.16+-orange)](https://ziglang.org/)
+[![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/dzonerzy/zsuite/blob/main/LICENSE)
+
+</div>
+
+---
 
 | Package | Stage | What it does | PyPI |
 |---|---|---|---|

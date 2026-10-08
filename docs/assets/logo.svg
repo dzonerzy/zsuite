@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background gradient: the zsuite tile -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+
+    <!-- Zig orange: the zsuite Z -->
+    <linearGradient id="zig" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7a41d"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+
+    <!-- The four tools' accents -->
+    <linearGradient id="gram" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="rules" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2dd4bf"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
+    </linearGradient>
+    <linearGradient id="run" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#67e8f9"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <linearGradient id="lsp" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c4b5fd"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+
+    <!-- The pipeline through them: green, teal, cyan, violet -->
+    <linearGradient id="flow" gradientUnits="userSpaceOnUse" x1="112" y1="108" x2="400" y2="340">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="35%" stop-color="#2dd4bf"/>
+      <stop offset="65%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+
+    <!-- The word, across the four -->
+    <linearGradient id="word" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="362" y2="0">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="33%" stop-color="#2dd4bf"/>
+      <stop offset="66%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="outerGlow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="blur" in2="SourceGraphic" operator="out" result="glowOut"/>
+      <feMerge>
+        <feMergeNode in="glowOut"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="shadow">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="64" fill="url(#bg)"/>
+
+  <!-- The pipeline: syntax, checks, running, the editor, and round again -->
+  <rect x="112" y="108" width="288" height="232" rx="44"
+        fill="none" stroke="url(#flow)" stroke-width="2.5" stroke-opacity="0.5"
+        filter="url(#glow)"/>
+  <!-- direction marks on the loop -->
+  <g fill="url(#flow)" opacity="0.7">
+    <path d="M 252 100 l 12 8 l -12 8 z"/>
+    <path d="M 392 220 l 8 12 l 8 -12 z"/>
+    <path d="M 260 332 l -12 8 l 12 8 z"/>
+    <path d="M 104 228 l 8 -12 l 8 12 z"/>
+  </g>
+
+  <!-- zgram: a parse tree -->
+  <g filter="url(#glow)">
+    <circle cx="112" cy="108" r="32" fill="#161b22" stroke="url(#gram)" stroke-width="3.5"/>
+  </g>
+  <g stroke="url(#gram)" stroke-width="3" stroke-linecap="round">
+    <line x1="112" y1="96" x2="100" y2="118"/>
+    <line x1="112" y1="96" x2="124" y2="118"/>
+  </g>
+  <g fill="url(#gram)">
+    <circle cx="112" cy="94" r="5.5"/>
+    <circle cx="100" cy="120" r="5"/>
+    <circle cx="124" cy="120" r="5"/>
+  </g>
+
+  <!-- zrules: a check -->
+  <g filter="url(#glow)">
+    <circle cx="400" cy="108" r="32" fill="#161b22" stroke="url(#rules)" stroke-width="3.5"/>
+  </g>
+  <path d="M 386 109 l 9 9 l 19 -20" fill="none" stroke="url(#rules)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- zrun: running -->
+  <g filter="url(#glow)">
+    <circle cx="400" cy="340" r="32" fill="#161b22" stroke="url(#run)" stroke-width="3.5"/>
+  </g>
+  <path d="M 391 325 L 416 340 L 391 355 Z" fill="url(#run)"/>
+
+  <!-- zlsp: an editor -->
+  <g filter="url(#glow)">
+    <circle cx="112" cy="340" r="32" fill="#161b22" stroke="url(#lsp)" stroke-width="3.5"/>
+  </g>
+  <rect x="94" y="326" width="36" height="28" rx="5" fill="none" stroke="url(#lsp)" stroke-width="3"/>
+  <!-- (solid: a gradient on a straight line has no box to span) -->
+  <g stroke="#a78bfa" stroke-width="3" stroke-linecap="round">
+    <line x1="101" y1="336" x2="115" y2="336"/>
+    <line x1="101" y1="344" x2="110" y2="344"/>
+    <line x1="121" y1="333" x2="121" y2="347"/>
+  </g>
+
+  <!-- The Z's shadow, for depth -->
+  <path transform="translate(38 4)" d="
+      M 130 152
+      L 318 152
+      L 318 178
+      L 192 288
+      L 318 288
+      L 318 314
+      L 130 314
+      L 130 288
+      L 256 178
+      L 130 178
+      Z
+    " fill="#000000" opacity="0.45" filter="url(#shadow)"/>
+
+  <!-- Main "Z" letterform: the zsuite mark, at the center of the four -->
+  <g filter="url(#outerGlow)">
+    <path transform="translate(32 -9)" d="
+      M 130 152
+      L 318 152
+      L 318 178
+      L 192 288
+      L 318 288
+      L 318 314
+      L 130 314
+      L 130 288
+      L 256 178
+      L 130 178
+      Z
+    " fill="url(#zig)"/>
+  </g>
+
+  <!-- "suite" text -->
+  <text x="256" y="474" text-anchor="middle"
+        font-family="'SF Mono', 'Fira Code', 'JetBrains Mono', monospace"
+        font-size="58" font-weight="700" letter-spacing="8"
+        fill="url(#word)">suite</text>
+
+  <!-- The pipeline, as a watermark -->
+  <text x="256" y="58" text-anchor="middle"
+        font-family="'SF Mono', 'Fira Code', monospace"
+        font-size="11" fill="#ffffff" opacity="0.14"
+        letter-spacing="1">grammar → rules → run → editor</text>
+</svg>
