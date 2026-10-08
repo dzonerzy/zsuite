@@ -14,6 +14,14 @@ on:
     workflow_call:
 
 jobs:
+    # The suite's lint: Ruff, as pyproject.toml configures it
+    lint:
+        name: Lint
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: astral-sh/ruff-action@v3
+
     test:
         name: Test (${{ matrix.os }}, Python ${{ matrix.python }})
         runs-on: ${{ matrix.os }}
