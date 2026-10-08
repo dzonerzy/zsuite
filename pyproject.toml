@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+# The import name is `zsuite`; every zsuite package is published as <name>-py
+name = "zsuite-py"
+version = "0.1.0"
+description = "A toolkit for building programming languages in Python: zgram (syntax), zrules (checks), zrun (execution), zlsp (editors), at versions that work together."
+requires-python = ">=3.10"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Daniele Linguaglossa" }]
+# (each at the minor series this release was tested with)
+dependencies = [
+    "zgram-py>=0.5.1,<0.6",
+    "zrules-py>=0.2.0,<0.3",
+    "zrun-py>=0.4.0,<0.5",
+    "zlsp-py>=0.1.3,<0.2",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Compilers",
+    "Topic :: Software Development :: Interpreters",
+]
+
+[project.optional-dependencies]
+# zrun.build_executable(): Zig, to link an executable's launcher
+exe = ["zrun-py[exe]>=0.4.0,<0.5"]
+
+[project.scripts]
+zsuite = "zsuite.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/dzonerzy/zsuite"
+Documentation = "https://github.com/dzonerzy/zsuite/tree/main/docs"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/zsuite"]
+
+# `zsuite new`'s template: the tutorial's language, as it is in examples/tiny
+[tool.hatch.build.targets.wheel.force-include]
+"examples/tiny/syntax.py" = "zsuite/template/syntax.py"
+"examples/tiny/checks.py" = "zsuite/template/checks.py"
+"examples/tiny/semantics.py" = "zsuite/template/semantics.py"
+"examples/tiny/server.py" = "zsuite/template/server.py"
+"examples/tiny/tiny.py" = "zsuite/template/tiny.py"
+"examples/tiny/test_tiny.py" = "zsuite/template/test_tiny.py"
+"examples/tiny/fib.tiny" = "zsuite/template/fib.tiny"
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "examples", "docs", "tests", "README.md", "LICENSE"]

@@ -24,11 +24,27 @@ Programming languages, DSLs and data formats, from a grammar to a fast implement
 | [zrun](https://github.com/dzonerzy/zrun) | Execution | Semantics written as Python functions, compiled to native code by partial evaluation; executables of a program | `zrun-py` |
 | [zlsp](https://github.com/dzonerzy/zlsp) | Editors | A Language Server for any language defined with zgram and checked with zrules: diagnostics, navigation, completion, hover | `zlsp-py` |
 
+## Installation
+
 ```bash
-pip install zgram-py zrules-py zrun-py zlsp-py
+pip install zsuite-py              # the four packages, at versions that work together
+pip install "zsuite-py[exe]"       # and what building executables needs
 ```
 
-The import names are `zgram`, `zrules`, `zrun` and `zlsp`. Wheels cover CPython 3.10+ on x86_64 Linux and Windows.
+The import names are `zgram`, `zrules`, `zrun` and `zlsp` (each can also be installed alone as `<name>-py`). Wheels cover CPython 3.10+ on x86_64 Linux and Windows.
+
+## Quick start
+
+```bash
+zsuite new calc        # a language project: grammar, rules, semantics, language server, tests
+cd calc
+python calc.py run fib.calc        # run a program, compiled to native code
+python calc.py check fib.calc      # its errors and warnings
+python calc.py lsp                 # a language server for your editor
+python -m pytest test_calc.py      # its tests
+```
+
+The project is the [tutorial](docs/tutorial.md)'s language under your name: change the grammar in `syntax.py`, the rules in `checks.py`, what each construct does in `semantics.py`, and the editor's view in `server.py`.
 
 ## How they fit
 
@@ -53,8 +69,20 @@ Each package is released on its own; these are the current ones, which work toge
 
 ## Documentation
 
-- [docs/design.md](docs/design.md): the toolkit's design: the stages, the interfaces between them, the decisions and the roadmap.
+- [Tutorial](docs/tutorial.md): building a language through all four stages, from grammar to editor and executable.
+- [Best practices](docs/best-practices.md): grammars that recover well, rules, semantics that compile fast, testing, shipping.
+- [Design](docs/design.md): how the suite fits together, its decisions and its roadmap.
 - Each package's README is its reference.
+
+## Project Structure
+
+```
+src/zsuite/          # the zsuite package: versions(), `zsuite new`
+examples/tiny/       # the tutorial's language: one file per stage, and its tests
+                     # (also `zsuite new`'s template)
+docs/                # the tutorial, best practices, the design
+tests/               # the package's tests
+```
 
 ## License
 

@@ -124,8 +124,8 @@ addop "operator" = [+\-]                                                       -
 - **`@recover(expr)`** names where a broken element ends, for error recovery.
 - **Actions** (`-> Name`) say what a node's value is when an AST is built:
   a class called with the labelled children as keyword arguments, or a native
-  built-in: `str`, `int`, `float`, `list`, `tuple`, `dict`, `True`/`False`/`None`,
-  `drop`, `first`.
+  built-in: `str`, `int`, `float`, `unquote` (a string literal, escapes
+  replaced), `list`, `tuple`, `dict`, `True`/`False`/`None`, `drop`, `first`.
 
 Left recursion is detected and refused: `@left`/`@right` express what it would.
 

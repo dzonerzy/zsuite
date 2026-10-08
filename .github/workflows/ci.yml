@@ -1,0 +1,62 @@
+name: CI
+
+# The suite as users get it: zsuite-py installed from this checkout, the four
+# packages from PyPI at the versions it allows; the tutorial's language and
+# `zsuite new` tested on top. Weekly too, so a new release of one package that
+# breaks the others shows up here first.
+on:
+    push:
+        branches: [main]
+    pull_request:
+    schedule:
+        - cron: "0 6 * * 1"
+    workflow_dispatch:
+    workflow_call:
+
+jobs:
+    test:
+        name: Test (${{ matrix.os }}, Python ${{ matrix.python }})
+        runs-on: ${{ matrix.os }}
+        strategy:
+            fail-fast: false
+            matrix:
+                os: [ubuntu-latest, windows-latest]
+                python: ["3.10", "3.12", "3.14"]
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-python@v5
+              with:
+                  python-version: ${{ matrix.python }}
+
+            - name: Install
+              shell: bash
+              run: python -m pip install . pytest
+
+            - name: Versions
+              run: zsuite versions
+
+            - name: Test
+              run: python -m pytest -q tests examples/tiny
+
+    build:
+        name: Build
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-python@v5
+              with:
+                  python-version: "3.12"
+
+            - name: Build the wheel and the sdist
+              run: python -m pip install build && python -m build
+
+            - name: Check the template is in the wheel
+              run: python -c "import zipfile, glob; names = zipfile.ZipFile(glob.glob('dist/*.whl')[0]).namelist(); assert 'zsuite/template/syntax.py' in names, names"
+
+            - uses: actions/upload-artifact@v4
+              with:
+                  name: wheel-zsuite
+                  path: dist/*
