@@ -339,5 +339,6 @@ runs one LSP message and returns the replies.
   [zlsp](https://github.com/dzonerzy/zlsp).
 - Bigger languages built this way: zrules' and zrun's `examples/lua` (Lua
   5.4: its full grammar, a checker run over real-world code, and an
-  implementation passing Lua's test programs) and zrun's `examples/scan` (a
+  implementation of a subset of the language and its libraries, its test
+  programs' output compared with real Lua's) and zrun's `examples/scan` (a
   YARA-like rule engine with native host functions).

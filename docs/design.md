@@ -34,8 +34,9 @@ method is there.
    to parse speed.
 5. **Designed by building languages.** Every API is exercised by real
    languages: tiny (the tutorial language), a typed language with structs and
-   generics, Lua 5.4 (checked over 830 real-world files, run against Lua's own
-   test programs), and a YARA-like rule engine.
+   generics, Lua 5.4 (its full grammar checked over 830 real-world files; a
+   subset of the language and its libraries run, its test programs' output
+   compared with real Lua's), and a YARA-like rule engine.
 
 ## Packages and how they fit
 
@@ -455,9 +456,11 @@ engines:
 - **Sessions and a REPL**: `lang.session()` runs entries one after another,
   each seeing what the ones before it defined; `lang.repl()` on top of it.
 
-Lua 5.4, its semantics about 2,300 lines of plain Python, runs 17-400x faster
-compiled than its semantics run as Python, within 1.6-3.2x of Lua's own C
-interpreter; typed code is within 2x of C.
+The Lua example (a subset of Lua 5.4: no coroutines, `goto`, `load` or
+`utf8`, most of `io` and `os` missing), its semantics about 2,300 lines of
+plain Python, runs 17-400x faster compiled than its semantics run as Python,
+within 1.6-3.2x of Lua's own C interpreter on small benchmarks; typed code is
+within 2x of C.
 
 ## zlsp: editors
 
