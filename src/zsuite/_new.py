@@ -28,16 +28,16 @@ def template_dir():
 
 def check_name(name):
     if not re.fullmatch(r"[a-z][a-z0-9_]*", name or ""):
-        raise ValueError("a language's name is lowercase letters, digits and _, starting with a letter: %r" % name)
+        raise ValueError(f"a language's name is lowercase letters, digits and _, starting with a letter: {name!r}")
     if keyword.iskeyword(name) or name in TAKEN:
-        raise ValueError("%r can't be a language's name here (a Python keyword, or a module of the project)" % name)
+        raise ValueError(f"{name!r} can't be a language's name here (a Python keyword, or a module of the project)")
 
 
 def new(name, directory=None):
     check_name(name)
     target = os.path.abspath(directory or name)
     if os.path.exists(target) and os.listdir(target):
-        raise FileExistsError("%s exists and isn't empty" % target)
+        raise FileExistsError(f"{target} exists and isn't empty")
     os.makedirs(target, exist_ok=True)
     source = template_dir()
     word = re.compile(r"\btiny\b")

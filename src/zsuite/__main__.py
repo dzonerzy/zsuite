@@ -13,25 +13,25 @@ def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
     if argv == ["versions"]:
         for name, v in zsuite.versions().items():
-            print("%-7s %s" % (name, v or "not installed"))
+            print(f"{name:<7} {v or 'not installed'}")
         return 0 if all(zsuite.versions().values()) else 1
     if len(argv) in (2, 3) and argv[0] == "new":
         try:
             path = zsuite.new(argv[1], argv[2] if len(argv) == 3 else None)
         except (ValueError, FileExistsError) as e:
-            print("zsuite: %s" % e, file=sys.stderr)
+            print(f"zsuite: {e}", file=sys.stderr)
             return 1
         name = argv[1]
-        print("Made %s, the tutorial's language as %s. In it:\n" % (path, name))
+        print(f"Made {path}, the tutorial's language as {name}. In it:\n")
         commands = [
-            ("python %s.py run fib.%s" % (name, name), "run it"),
-            ("python %s.py check fib.%s" % (name, name), "check it"),
-            ("python %s.py lsp" % name, "its language server"),
-            ("python -m pytest test_%s.py" % name, "its tests"),
+            (f"python {name}.py run fib.{name}", "run it"),
+            (f"python {name}.py check fib.{name}", "check it"),
+            (f"python {name}.py lsp", "its language server"),
+            (f"python -m pytest test_{name}.py", "its tests"),
         ]
         width = max(len(c) for c, _ in commands)
         for c, what in commands:
-            print("    %s   # %s" % (c.ljust(width), what))
+            print(f"    {c:<{width}}   # {what}")
         return 0
     print(__doc__.strip(), file=sys.stderr)
     return 2
