@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 # The import name is `zsuite`; every zsuite package is published as <name>-py
 name = "zsuite-py"
-version = "0.1.0"
+version = "0.2.0"
 description = "A toolkit for building programming languages in Python: zgram (syntax), zrules (checks), zrun (execution), zlsp (editors), at versions that work together."
 requires-python = ">=3.10"
 readme = "README.md"
@@ -14,9 +14,9 @@ license-files = ["LICENSE"]
 authors = [{ name = "Daniele Linguaglossa" }]
 # (each at the minor series this release was tested with)
 dependencies = [
-    "zgram-py>=0.5.1,<0.6",
+    "zgram-py>=0.5.2,<0.6",
     "zrules-py>=0.2.0,<0.3",
-    "zrun-py>=0.4.0,<0.5",
+    "zrun-py>=0.5.0,<0.6",
     "zlsp-py>=0.1.3,<0.2",
 ]
 classifiers = [
@@ -31,8 +31,8 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-# zrun.build_executable(): Zig, to link an executable's launcher
-exe = ["zrun-py[exe]>=0.4.0,<0.5"]
+# zrun.build_executable() and build_native(): Zig, to link them
+exe = ["zrun-py[exe]>=0.5.0,<0.6"]
 
 [project.scripts]
 zsuite = "zsuite.__main__:main"
