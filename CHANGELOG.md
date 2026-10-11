@@ -5,6 +5,12 @@ All notable changes to zsuite are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2026-10-11
+
+### Fixed
+- **zrun-py 0.7.1**: crashes and leaks fixed in compiled code (a parsed node kept in a record, a loop over known tuples, known lists inside lists), module-level sets native in strict languages.
+- **The `exe` extra** asked for zrun-py 0.6, which the suite's own zrun-py 0.7 requirement excludes: `zsuite[exe]` couldn't be installed. It asks for 0.7.1 now.
+
 ## [0.4.0] - 2026-10-11
 
 ### Changed
