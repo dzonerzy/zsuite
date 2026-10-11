@@ -12,7 +12,7 @@ together; import them as usual:
 command) starts a language project.
 """
 
-__version__ = "0.4.1"
+__version__ = "0.4.2"
 
 PACKAGES = ("zgram", "zrules", "zrun", "zlsp")
 

@@ -5,6 +5,11 @@ All notable changes to zsuite are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.2] - 2026-10-11
+
+### Changed
+- **zrun-py 0.7.2**: more natively in compiled code and standalone programs: reading and writing files, stdin, `os.getenv()`/`os.path`, Python's `OSError`s; `repr()`, Unicode `lower()`/`upper()`/`isalpha()`, `<<`/`>>`, `node.find()`; a strict language's module table native all through; methods dispatched by number (about 10% faster on method-heavy code). The `exe` extra asks for it too.
+
 ## [0.4.1] - 2026-10-11
 
 ### Fixed
