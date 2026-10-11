@@ -65,7 +65,7 @@ Each package is released on its own; these are the current ones, which work toge
 
 | zgram | zrules | zrun | zlsp |
 |---|---|---|---|
-| 0.5.4 | 0.2.0 | 0.6.0 | 0.1.3 |
+| 0.6.0 | 0.2.0 | 0.7.0 | 0.1.3 |
 
 ## Documentation
 

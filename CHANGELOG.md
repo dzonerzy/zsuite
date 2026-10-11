@@ -5,6 +5,12 @@ All notable changes to zsuite are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-10-11
+
+### Changed
+- **zgram-py 0.6.0**: parsers built ahead of time (`GrammarParser.build()`: an object file, a C header and zgram's runtime, for programs in any language with no Python and no LLVM: the same trees and error messages), and `GrammarParser.capsule` for native code in other packages.
+- **zrun-py 0.7.0**: `rt.parse(grammar, text)`, text parsed with a zgram grammar while a program runs and read as its own nodes; natively in compiled code, strict languages and standalone programs.
+
 ## [0.3.2] - 2026-10-11
 
 ### Fixed
