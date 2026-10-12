@@ -5,6 +5,11 @@ All notable changes to zsuite are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.3] - 2026-10-13
+
+### Fixed
+- **zrun-py 0.7.4**: compiled code of a helper changing or passing on a known list or dict inside its `try` body (after a call there that may fail): rejected by LLVM ("Instruction does not dominate all uses"), or the list changed while compiling instead of at run time; and, in 0.7.3, a known list changed by a helper inside its caller's `if` or loop changed only once, whichever path ran. The `exe` extra asks for it too.
+
 ## [0.4.2] - 2026-10-11
 
 ### Changed
